@@ -1,17 +1,16 @@
 from products_list import Products_List
 
 class Product:
-    def __init__(self, product_id, name, total_qty):
-        self.product_id = product_id
+    def __init__(self, name, total_qty):
         self.name = name
         self.total_qty = total_qty
 
     # reprr is nodig omdat het anders in binary gaat tonen
     def __repr__(self):
-        return f"|id: {self.product_id}| Name: {self.name}| Qty: {self.total_qty}"
+        return f"Name: {self.name}| Qty: {self.total_qty}"
     
     
-    def remove_product(self, id):
+    def remove_product(self):
         pass
 
 
