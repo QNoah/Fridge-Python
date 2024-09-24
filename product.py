@@ -1,13 +1,20 @@
-from products_list import Products_List
+import random
+import string
 
 class Product:
-    def __init__(self, name, total_qty):
+    def __init__(self, name, total_qty, id=None):
+        self.id = id if id else self.generate_id()
         self.name = name
         self.total_qty = total_qty
-
+    
+    
+    def generate_id(self, length= 6):
+        return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+    
+    
     # reprr is nodig omdat het anders in binary gaat tonen
     def __repr__(self):
-        return f"Name: {self.name}| Qty: {self.total_qty}"
+        return f"Id: {self.id}, Name: {self.name}, Qty: {self.total_qty}"
     
     
     def remove_product(self):

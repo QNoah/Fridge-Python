@@ -5,6 +5,8 @@ from product import Product
 product_list = Products_List()
 
 def add_product():
+    print("Add Product:")
+    print("Type menu to go to the menu")
     product_name = input("Enter a name for your product: ")
     while True:
         try:
@@ -12,23 +14,45 @@ def add_product():
             break
         except ValueError:
             continue
-    product = Product(product_name, product_qty)
+
+    product = Product(name=product_name, total_qty=product_qty)
     os.system("cls")
     product_list.add_product(product)
     
     while True:
         try:
-            _ = input("Would you wish to enter another product? (Yes or No):").lower()
-            if _ == "yes":
+            _ = input("Would you wish to enter another product? (Y/N):").lower()
+            if _ == "y":
                 add_product()
-            elif _ == "no":
+                break
+            elif _ == "n":
                 menu()
+                break
             else:
                 print("That is not a valid option")
-                continue
         except ValueError:
             print("That is not a valid option")
-            continue
+
+
+def add_qty():
+    print("| Add QTY |")
+    print("Type menu to go to the menu")
+    print("-" * 40)
+    product_list.show_list()
+    print("-" * 40)
+    while True:
+        try:
+            inp_id = input("Enter the id of the product: ")
+            if inp_id == "menu":
+                menu()
+                break
+            
+        except ValueError:
+            os.system("cls")
+            print("That command does not exist")
+            add_qty()
+    
+
 
 def view_products():
     product_list.show_list()
@@ -36,19 +60,26 @@ def view_products():
 
 
 def menu():
-    print("Menu:")
+    print("| Menu |")
+    print("-" * 40)
     print("1. Add product")
-    print("2. Remove product")
-    print("3. View List")
+    print("2. Add Qty")
+    print("3. Remove product")
+    print("4. View List")
     while True:
         try:
             choice = int(input(""))
             os.system("cls")
             if choice == 1:
                 add_product()
+                break
             elif choice == 2:
-                print("keuze 2")
+                add_qty()
+                break
             elif choice == 3:
+                print("keuze 3")
+                break
+            elif choice == 4:
                 view_products()
             else:
                 print("That is not a valid option.")
@@ -57,12 +88,6 @@ def menu():
             print("That is not a valid option.")
             continue
 
-
-# product_1 = Product(1, "Egg", 2)
-# # qty = int(input())
-# product_list.add_product(product_1)
-
-# print(product_list.show_list())
 
 print("Welcome before we continue to visit your entire list of products, we first need to enter some products.")
 add_product()
