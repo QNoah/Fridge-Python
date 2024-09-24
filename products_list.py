@@ -8,5 +8,9 @@ class Products_List:
         print(f'"{self.product.name}" added to the list')
     
     def show_list(self):
-        for product in self.products:
-            print(product)
+        if self.products != []:
+            for product in self.products:
+                print(product)
+        else:
+            print("Your list is empty")
+            return "empty"

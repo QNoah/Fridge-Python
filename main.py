@@ -7,7 +7,11 @@ product_list = Products_List()
 def add_product():
     print("Add Product:")
     print("Type menu to go to the menu")
-    product_name = input("Enter a name for your product: ")
+    print("Enter a name for your product:")
+    product_name = input("")
+    if product_name == "menu":
+        os.system("cls")
+        menu()
     while True:
         try:
             product_qty = int(input("Enter the amount of quantity: "))
@@ -51,7 +55,6 @@ def add_qty():
             os.system("cls")
             print("That command does not exist")
             add_qty()
-    
 
 
 def view_products():
@@ -74,8 +77,13 @@ def menu():
                 add_product()
                 break
             elif choice == 2:
-                add_qty()
-                break
+                result = product_list.show_list()
+                if result == "empty":
+                    print("Not available, since there are no items in the list.")
+                    menu()
+                else:
+                    add_qty()
+                    break
             elif choice == 3:
                 print("keuze 3")
                 break
